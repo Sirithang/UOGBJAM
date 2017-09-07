@@ -180,6 +180,16 @@ public class PhysicObject : MonoBehaviour
                     m_grounded = true;
                 }
 
+                //--- check for contact receiver
+
+                IPhysicObjectContactReceiver receiver = m_hitBuffer[i].collider.GetComponent<IPhysicObjectContactReceiver>();
+                if(receiver != null)
+                {
+                    receiver.Contact(xMove.normalized);
+                }
+
+                //---
+
                 float proj = Vector2.Dot(m_Velocity, cntNorm);
 
                 if (proj < 0)
@@ -216,6 +226,16 @@ public class PhysicObject : MonoBehaviour
                     cntNorm.x = 0;
                 }
 
+                // ---check for contact receiver
+
+                IPhysicObjectContactReceiver receiver = m_hitBuffer[i].collider.GetComponent<IPhysicObjectContactReceiver>();
+                if (receiver != null)
+                {
+                    receiver.Contact(yMove.normalized);
+                }
+
+                //---
+
                 float proj = Vector2.Dot(m_Velocity, cntNorm);
 
                 if (proj < 0)
@@ -251,4 +271,9 @@ public class PhysicObject : MonoBehaviour
         m_Rigidbody.position = position;
         if (resetVelocity) m_Velocity = Vector2.zero;
     }
+}
+
+public interface IPhysicObjectContactReceiver
+{
+    void Contact(Vector2 direction);
 }

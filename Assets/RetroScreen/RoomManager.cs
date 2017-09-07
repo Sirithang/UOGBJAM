@@ -120,6 +120,10 @@ public class RoomManager : MonoBehaviour, ISerializationCallbackReceiver
             for (int i = 0; i < objList.Count; ++i)
             {
                 objList[i].gameObject.SetActive(active);
+                if (active)
+                    objList[i].OnRoomEntered();
+                else
+                    objList[i].OnRoomExited();
             }
         }
     }

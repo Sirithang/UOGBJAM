@@ -29,6 +29,9 @@ public class RoomObject : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public virtual void OnRoomEntered() { }
+    public virtual void OnRoomExited() { }
+
     protected virtual void OnDestroy()
     {
         RoomManager.Instance.UnregisterRoomObject(this);
