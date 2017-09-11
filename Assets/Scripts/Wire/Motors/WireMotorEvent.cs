@@ -12,7 +12,7 @@ public class WireMotorEvent : WireMotor
     {
         base.Powered();
 
-        onPowerDown.Invoke();
+        onPowerUp.Invoke();
     }
 
     protected override void Shutdown()

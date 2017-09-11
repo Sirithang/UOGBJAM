@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 51074621}
   - component: {fileID: 51074623}
   - component: {fileID: 51074622}
+  - component: {fileID: 51074624}
   m_Layer: 0
   m_Name: Closed_door
   m_TagString: Untagged
@@ -136,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 51074620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 17.5, z: 0}
+  m_LocalPosition: {x: 4.5, y: 17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 716586233}
@@ -154,10 +155,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -211,6 +212,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &51074624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51074620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ef8005be573b4448b1490759892542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredPower: 1
+  connectedGenerator:
+  - {fileID: 64504029}
+  onPowerUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 51074620}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onPowerDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 51074620}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &64504027
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +268,8 @@ GameObject:
   - component: {fileID: 64504028}
   - component: {fileID: 64504030}
   - component: {fileID: 64504029}
+  - component: {fileID: 64504031}
+  - component: {fileID: 64504032}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -235,7 +284,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 64504027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 13.5, z: 0}
+  m_LocalPosition: {x: 2, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 716586233}
@@ -252,7 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44bfe0413c3d94479457cb50f536a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedMotor: []
+  connectedMotor:
+  - {fileID: 51074624}
 --- !u!212 &64504030
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -286,7 +336,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300038, guid: f2c02a41b72d3b343b08fa38e5e3ffe7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -297,6 +347,51 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!50 &64504031
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 64504027}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &64504032
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 64504027}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.49709463, y: 0.5087161}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5060816, y: 0.5060816}
+  m_EdgeRadius: 0
 --- !u!1 &353722555
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,11 +668,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4410930994994668, guid: 63f0e686e0238e54fbaa0579178465dc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4410930994994668, guid: 63f0e686e0238e54fbaa0579178465dc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 13.5
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4410930994994668, guid: 63f0e686e0238e54fbaa0579178465dc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -602,6 +697,31 @@ Prefab:
     - target: {fileID: 4410930994994668, guid: 63f0e686e0238e54fbaa0579178465dc, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61023844718477824, guid: 63f0e686e0238e54fbaa0579178465dc,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 61023844718477824, guid: 63f0e686e0238e54fbaa0579178465dc,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114751976396384420, guid: 63f0e686e0238e54fbaa0579178465dc,
+        type: 2}
+      propertyPath: amount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114751976396384420, guid: 63f0e686e0238e54fbaa0579178465dc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212156323511473894, guid: 63f0e686e0238e54fbaa0579178465dc,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63f0e686e0238e54fbaa0579178465dc, type: 2}
@@ -2984,7 +3104,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: 0, z: 0}
   m_Size: {x: 30, y: 45, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -9140,7 +9260,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: 0, z: 0}
   m_Size: {x: 30, y: 45, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1

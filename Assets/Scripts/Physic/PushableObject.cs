@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushableObject : RoomObject, IPhysicObjectContactReceiver
+public class PushableObject : RoomObject, IPhysicObjectContactReceiver, IFloorButtonActivator
 {
     protected static Color s_GizmoCubeColor = new Color(0, 1, 0, 0.7f);
 
@@ -84,8 +84,8 @@ public class PushableObject : RoomObject, IPhysicObjectContactReceiver
 
     void OnDrawGizmosSelected()
     {
-        Vector3 start = transform.position - new Vector3(0.5f,0.5f);
-        Vector3 end = transform.position + new Vector3(0.5f, 0.5f);
+        Vector3 start = transform.position;
+        Vector3 end = transform.position + Vector3.one;
 
         if((pushableDirection & DIRECTION.DOWN) != 0)
             start.y -= amount;
